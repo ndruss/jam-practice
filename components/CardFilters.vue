@@ -50,9 +50,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-@import '../styles/_settings';
-
+<style scoped>
 .card-filters {
   color: white;
   text-align: left;

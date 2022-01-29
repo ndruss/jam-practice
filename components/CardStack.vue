@@ -40,8 +40,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-@import '../styles/_settings';
+<style scoped>
 .deck {
   width: 100%;
   height: 100%;
@@ -53,8 +52,8 @@ export default {
   position: relative;
   display: flex;
   width: 90%;
-  max-width: $card_width;
-  height: $card_height;
+  max-width: var(--card-width);
+  height: var(--card-height);
 }
 
 .no-cards-area {

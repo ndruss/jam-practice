@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@200;300;400;500&display=swap');
+
+:root {
+  --base-font: 'Work Sans', sans-serif;
+  --ease: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --card-width: 360px;
+  --card-height: 420px;
+  --color-red: #d23b42;
+  --color-yellow: #e7b318;
+  --color-orange: #d66828;
+  --color-green: #2a6a42;
+  --color-blue: #315498;
+  --color-purple: #803f86;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #232330;
+  font-family: 'Work Sans', sans-serif;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  width: 100%;
+}
+
+.app {
+  display: grid;
+  grid-template-rows: 1fr 100px;
+  height: 100vh;
+}
+
+.container {
+  padding: 0 1rem;
+}
+
+.bg-red {
+  background-color: var(--color-red);
+}
+.bg-orange {
+  background-color: var(--color-orange);
+}
+.bg-yellow {
+  background-color: var(--color-yellow);
+}
+.bg-green {
+  background-color: var(--color-green);
+}
+.bg-blue {
+  background-color: var(--color-blue);
+}
+.bg-purple {
+  background-color: var(--color-purple);
+}

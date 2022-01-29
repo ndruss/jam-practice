@@ -55,16 +55,23 @@ export default {
         y: 0,
         rotation: 0,
       },
+
     }
   },
 
   computed: {
+    defaultTransform() {
+      const index = this.position - 1
+      const translation = 7 * (index < 3 ? index : 3)
+      const scale = 1 - (0.01 * (index < 3 ? index : 3))
+      return `translateY(${translation}px) scale(${scale})`
+    },
     transform() {
       if (!this.isAnimating || this.isInteractDragged) {
         const { x, y, rotation } = this.interactPosition
         return `translate3D(${x}px, ${y}px, 0) rotate(${rotation}deg)`
       }
-      return null
+      return this.defaultTransform
     },
 
     cardClass() {
@@ -184,15 +191,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-@import '../styles/_settings';
-
-$cardsTotal: 3;
-$cardsPositionOffset: 7px;
-$cardsScaleOffset: 0.01;
-$defaultTranslation: $cardsPositionOffset * $cardsTotal;
-$defaultScale: 1 - ($cardsScaleOffset * $cardsTotal);
-
+<style scoped>
 .card {
   background: rgb(218, 218, 218);
   border-radius: 8px;
@@ -201,29 +200,18 @@ $defaultScale: 1 - ($cardsScaleOffset * $cardsTotal);
   padding: 12px;
   pointer-events: none;
   position: absolute;
-  transform: translateY($defaultTranslation) scale($defaultScale);
   transform-origin: 50%, 100%;
   user-select: none;
   width: 100%;
   will-change: transform, opacity;
-  &.isCurrent {
-    pointer-events: auto;
-  }
-  &.isAnimating {
-    transition: transform 0.7s $ease-out-back, opacity 0.3s ease;
-  }
-  &:nth-child(n + #{$cardsTotal + 1}) {
-    opacity: 0;
-  }
 }
-
-@for $i from 1 through $cardsTotal {
-  $index: $i - 1;
-  $translation: $cardsPositionOffset * $index;
-  $scale: 1 - ($cardsScaleOffset * $index);
-
-  .card:nth-child(#{$i}) {
-    transform: translateY($translation) scale($scale);
-  }
+.card:nth-child(n + 4) {
+  opacity: 0;
+}
+.card.isCurrent {
+  pointer-events: auto;
+}
+.card.isAnimating {
+  transition: transform 0.7s var(--ease), opacity 0.3s ease;
 }
 </style>

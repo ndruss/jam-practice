@@ -48,9 +48,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-@import '../styles/_settings';
-
+<style scoped>
 .card-content {
   border-radius: 5px;
   color: #fff;
