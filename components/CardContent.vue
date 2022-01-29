@@ -38,10 +38,10 @@ export default {
     return { 
       id,
       title,
-      description: description.rich_text?.[0]?.plain_text,
+      description,
       type,
-      artist: artist.rich_text?.[0]?.plain_text,
-      spotifyId: spotifyId.rich_text?.[0]?.plain_text,
+      artist,
+      spotifyId,
       spotifyLink,
     }
   }

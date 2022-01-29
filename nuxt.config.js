@@ -47,21 +47,11 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    // https://go.nuxtjs.dev/pwa
-    // '@nuxtjs/pwa',
-    // '@nuxt/http',
     ['nuxt-vuex-localstorage', {
       // mode: 'debug'
     }]
   ],
-
-  // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {
-    // debug: true,
-    // baseUrl: 'https://accounts.spotify.com'
-  },
 
   http: {
     proxyHeaders: true

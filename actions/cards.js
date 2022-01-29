@@ -1,5 +1,13 @@
 import { shuffle } from 'fast-shuffle'
 
+const getRichTextField = ({ rich_text }) => {
+  return rich_text.length ? (rich_text[0].plain_text || null) : null
+}
+
+const removeEmpty = obj => {
+  return Object.fromEntries(Object.entries(obj).filter(([_, v]) => v != null && v !== ''))
+}
+
 const mapEntriesToCards = entries => {
   return entries.map((entry) => {
     const { id, properties } = entry
@@ -10,21 +18,21 @@ const mapEntriesToCards = entries => {
       description,
       type: { select: type },
       artist,
-      spotify_id: spotifyId,
+      spotify_id,
       spotify_link: {
         formula: { string: spotifyLink }
       }
     } = properties
 
-    return {
+    return removeEmpty({
       id,
       title,
-      description,
       type,
-      artist,
-      spotifyId,
-      spotifyLink
-    }
+      spotifyLink,
+      description: getRichTextField(description),
+      artist: getRichTextField(artist),
+      spotifyId: getRichTextField(spotify_id)
+    })
   })
 }
 
