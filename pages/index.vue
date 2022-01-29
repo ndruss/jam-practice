@@ -1,7 +1,7 @@
 <template>
   <div class="app">
     <div class="grid-item-1">
-      <CardStack :cards="activeCards" />
+      <CardStack />
     </div>
     <div class="grid-item-2">
       <TheMenu class="container">
@@ -16,9 +16,6 @@ import { mapMutations } from 'vuex'
 
 export default {
   computed: {
-    activeCards() {
-      return this.$store.state.activeCards || []
-    },
     cardTypes() {
       return this.$store.state.cardTypes
     }

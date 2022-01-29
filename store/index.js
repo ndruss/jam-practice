@@ -3,11 +3,12 @@ import { getAccessToken, getTrackData } from '../api/spotify'
 import { setCardsWithFilters, mapEntriesToCards } from '../actions/cards'
 
 export const state = () => ({
-  activeCards: [],
+  activeCards: undefined,
   albumArt: {},
   cardIndex: 0,
   cards: [],
   cardTypes: [],
+  gameStatus: 'not started'
 })
 
 export const mutations = {
@@ -32,6 +33,9 @@ export const mutations = {
   },
   addAlbumArt(state, { uid, images }) {
     state.albumArt[uid] = images
+  },
+  setGameStatus(state, status) {
+    state.gameStatus = status
   }
 }
 

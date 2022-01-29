@@ -2,14 +2,14 @@
   <div class="deck">
     <div class="card-stack">
       <Card
-        v-for="(card, index) in cards"
+        v-for="(card, index) in activeCards"
         :key="card.id"
         :card="card"
         :is-current="index === 0"
         :position="index + 1"
-        :z-index="cards.length - index"
+        :z-index="activeCards.length - index"
       />
-      <div v-if="cards.length < 1" class="no-cards-area">
+      <div v-if="hasReachedEnd" class="no-cards-area">
         <div>
           <h3>No more cards</h3>
           <button class="reshuffle-button" @click="reShuffle">Reshuffle</button>
@@ -22,10 +22,12 @@
 <script>
 import { mapMutations } from 'vuex'
 export default {
-  props: {
-    cards: {
-      type: Array,
-      required: true
+  computed: {
+    activeCards() {
+      return this.$store.state.activeCards || []
+    },
+    hasReachedEnd() {
+      return this.$store.state.gameStatus !== 'not started' && this.activeCards.length < 1
     }
   },
   methods: {

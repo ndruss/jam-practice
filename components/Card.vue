@@ -160,6 +160,10 @@ export default {
 
       this.interactUnsetElement()
       this.hideCard()
+
+      if (this.$store.state.gameStatus !== 'in progress') {
+        this.$store.commit('setGameStatus', 'in progress')
+      }
     },
 
     interactSetPosition({ x = 0, y = 0, rotation = 0 }) {
