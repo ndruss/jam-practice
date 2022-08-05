@@ -6,7 +6,12 @@
     :class="{ isAnimating, isCurrent }"
     :style="{ transform, zIndex }"
   >
-    <CardContent :active="isCurrent" :content="content" :position="position" />
+    <component
+      :is="cardContent"
+      :active="isCurrent"
+      :content="card"
+      :position="position"
+    />
   </div>
 </template>
 
@@ -44,9 +49,6 @@ export default {
 
   data() {
     return {
-      content: {
-        ...this.card,
-      },
       isShowing: true,
       isAnimating: true,
       isInteractDragged: null,
@@ -66,6 +68,7 @@ export default {
       const scale = 1 - (0.01 * (index < 3 ? index : 3))
       return `translateY(${translation}px) scale(${scale})`
     },
+
     transform() {
       if (!this.isAnimating || this.isInteractDragged) {
         const { x, y, rotation } = this.interactPosition
@@ -81,6 +84,12 @@ export default {
         this.isAnimating && 'isAnimating',
       ]
     },
+
+    cardContent() {
+      const type = this.card.type.name
+      return type.toLowerCase() === 'song' ? 'CardContentSong' : 'CardContentBasic'
+    }
+
   },
 
   mounted() {
