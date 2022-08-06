@@ -1,7 +1,7 @@
 <template>
   <div class="deck">
     <div class="card-stack">
-      <Card
+      <CardWrapper
         v-for="(card, index) in activeCards"
         :key="card.id"
         :card="card"
@@ -20,22 +20,19 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
 export default {
   computed: {
     activeCards() {
-      return this.$store.state.activeCards || []
+      return []
     },
     hasReachedEnd() {
-      return this.$store.state.gameStatus !== 'not started' && this.activeCards.length < 1
+      return false
     }
   },
   methods: {
     reShuffle() {
-      const { filters } = this.$store.state.localStorage
-      this.$store.commit('setActiveCards', { filters })
-    },
-    ...mapMutations({})
+      console.log('reshuffling cards')
+    }
   }
 }
 </script>

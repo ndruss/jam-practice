@@ -16,7 +16,6 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
 import interact from 'interact.js'
 
 export default {
@@ -25,25 +24,25 @@ export default {
     interactOutOfSightXCoordinate: 500,
     interactOutOfSightYCoordinate: 600,
     interactYThreshold: 150,
-    interactXThreshold: 100,
+    interactXThreshold: 100
   },
 
   props: {
     card: {
       type: Object,
-      required: true,
+      required: true
     },
     zIndex: {
       type: Number,
-      required: true,
+      required: true
     },
     isCurrent: {
       type: Boolean,
-      required: true,
+      required: true
     },
     position: {
       type: Number,
-      required: true,
+      required: true
     }
   },
 
@@ -55,8 +54,8 @@ export default {
       interactPosition: {
         x: 0,
         y: 0,
-        rotation: 0,
-      },
+        rotation: 0
+      }
 
     }
   },
@@ -79,9 +78,9 @@ export default {
 
     cardClass() {
       return [
-        `card`,
+        'card',
         this.isCurrent && 'isCurrent',
-        this.isAnimating && 'isAnimating',
+        this.isAnimating && 'isAnimating'
       ]
     },
 
@@ -131,7 +130,7 @@ export default {
           // Reset card position
           this.interactSetPosition({})
         }
-      },
+      }
     })
   },
 
@@ -151,24 +150,24 @@ export default {
       const {
         interactOutOfSightXCoordinate,
         interactOutOfSightYCoordinate,
-        interactMaxRotation,
+        interactMaxRotation
       } = this.$options.static
 
       switch (interaction) {
         case 'swipeRight':
           this.interactSetPosition({
             x: interactOutOfSightXCoordinate,
-            rotation: interactMaxRotation,
+            rotation: interactMaxRotation
           })
           break
-        
+
         case 'swipeLeft':
           this.interactSetPosition({
             x: -interactOutOfSightXCoordinate,
-            rotation: -interactMaxRotation,
+            rotation: -interactMaxRotation
           })
           break
-        
+
         case 'swipeDown':
           this.interactSetPosition({ y: interactOutOfSightYCoordinate })
           break
@@ -176,10 +175,6 @@ export default {
 
       this.interactUnsetElement()
       this.hideCard()
-
-      if (this.$store.state.gameStatus !== 'in progress') {
-        this.$store.commit('setGameStatus', 'in progress')
-      }
     },
 
     interactSetPosition({ x = 0, y = 0, rotation = 0 }) {
@@ -192,11 +187,9 @@ export default {
     },
 
     removeCard() {
-      this.$store.commit('removeCard')
-    },
-
-    ...mapMutations({}),
-  },
+      console.log('removing card')
+    }
+  }
 }
 </script>
 

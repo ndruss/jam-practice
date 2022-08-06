@@ -36,7 +36,7 @@ const mapEntriesToCards = entries => {
   })
 }
 
-const setCardsWithFilters = (cards, filters) => {
+const setCardsWithFilters = (cards, filters = {}) => {
   let activeCards = cards
   if (filters.cardTypes.length) {
     activeCards = cards.filter(card => filters.cardTypes.includes(card.type.id))

@@ -12,7 +12,6 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
 
 export default {
   data() {
@@ -43,10 +42,7 @@ export default {
       }
     },
     setActiveCards(filters) {
-      const cards = this.$store.state.cards
-      this.$store.commit('setActiveCards', { cards, filters })
     },
-    ...mapMutations({})
   }
 }
 </script>

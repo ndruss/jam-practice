@@ -16,7 +16,6 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
 
 export default {
   props: {
@@ -27,7 +26,7 @@ export default {
   },
   computed: {
     filters() {
-      return this.$store.state.localStorage.filters
+      return {}
     },
   },
   methods: {
@@ -40,12 +39,11 @@ export default {
       }
     },
     addCardTypeFilter(id) {
-      this.$store.commit('localStorage/addCardTypeFilter', id)
+      
     },
     removeCardTypeFilter(id) {
-      this.$store.commit('localStorage/removeCardTypeFilter', id)
-    },
-    ...mapMutations({})
+      
+    }
   }
 }
 </script>
